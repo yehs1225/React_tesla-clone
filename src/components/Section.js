@@ -1,29 +1,32 @@
 import React from 'react';
 import styled from "styled-components";
+import Fade from 'react-reveal/Fade';
 
 function Section({title,description,backgroundImg,leftBtnText,rightBtnText}) {
     console.log(backgroundImg)
   return(
     <Wrap bgImage={backgroundImg}>
-        
-        <ItemText>
-            <h1>{title}</h1>
-            <p>{description}</p>
-        </ItemText>
-        <Buttons>
-            <ButtonGroup>
-                <LeftButton>
-                    {leftBtnText}
-                </LeftButton>
-                {rightBtnText&&
-                    <RightButton>
-                        {rightBtnText}
-                    </RightButton>
-                }
+        <Fade bottom>
+            <ItemText>
+                <h1>{title}</h1>
+                <p>{description}</p>
+            </ItemText>
+        </Fade>
 
-            </ButtonGroup>
+        <Buttons>
+            <Fade bottom>
+                <ButtonGroup>
+                    <LeftButton>
+                        {leftBtnText}
+                    </LeftButton>
+                    {rightBtnText&&
+                        <RightButton>
+                            {rightBtnText}
+                        </RightButton>
+                    }
+                </ButtonGroup>
+            </Fade>
             <DownArrow src="/images/down-arrow.svg"/>
-        
         </Buttons>
     </Wrap>
   )
@@ -43,14 +46,20 @@ const Wrap = styled.div`
     align-items:center;//horizontal
 `
 const ItemText = styled.div`
-    padding-top:15vh;
+    font-size:15px;
+    padding-top:20vh;
     text-align:center;
+    p{
+        margin-top:5px;
+    }
 `
 const ButtonGroup = styled.div`
     display:flex;
     margin-bottom:30px;
-    @media (max-width:768px){
+    @media (max-width:1250px){
         flex-direction:column;
+        margin-bottom:10px;
+
     }
 `
 const LeftButton = styled.div`
@@ -67,6 +76,10 @@ const LeftButton = styled.div`
     font-size:12px;
     cursor:pointer;
     margin:8px;
+    @media (max-width:1250px){
+        height: 25px;
+        width:280px;
+    }
 `
 const RightButton = styled(LeftButton)`
     background-color:white;
